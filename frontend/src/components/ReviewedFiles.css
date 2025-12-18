@@ -1,0 +1,24 @@
+/* ReviewedFiles.css */
+.reviewed-files-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  padding: 40px 20px;
+}
+
+.reviews-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.review-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.review-header-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

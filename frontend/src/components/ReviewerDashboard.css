@@ -1,0 +1,28 @@
+.reviewer-dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.review-card::before {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.viewed-card::before {
+  background: linear-gradient(90deg, #fa709a 0%, #fee140 100%) !important;
+}
+
+.review-card .card-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.viewed-card .card-icon {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.review-btn-action {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.viewed-btn-action {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
