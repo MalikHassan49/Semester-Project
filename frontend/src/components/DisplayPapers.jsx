@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DisplayPapers.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const DisplayPapers = () => {
   const [papers, setPapers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,13 +16,7 @@ const DisplayPapers = () => {
 
   const fetchPapers = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/papers/my-papers', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
+      const response = await fetch(`${API_URL}/api/papers/my-papers`);
       const data = await response.json();
 
       if (response.ok) {
