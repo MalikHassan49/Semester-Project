@@ -14,9 +14,17 @@ const adminRoutes = require('./routes/admin');
 const app = express();
 
 // Middleware
+// app.use(cors({
+//   origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+//   credentials: true
+// }));
+
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-  credentials: true
+  origin: process.env.CORS_ORIGIN,
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
