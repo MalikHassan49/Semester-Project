@@ -211,7 +211,7 @@ exports.getMyPapers = async (req, res) => {
   let connection;
   
   try {
-    const authorId = req.user.userId;
+    const authorId = req.user.user_id;
 
     // Get connection
     connection = await db.getConnection();

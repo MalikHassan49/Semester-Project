@@ -37,11 +37,11 @@ exports.register = async (req, res) => {
       [username, email, hashedPassword, role]
     );
 
-    const userId = result[0][0].user_id;
+    const user_id = result[0][0].user_id; // ✅ user_id name consistent
 
-    // Generate JWT
+    // Generate JWT with user_id field
     const token = jwt.sign(
-      { userId, email, role },
+      { user_id, email, role },
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
@@ -51,7 +51,7 @@ exports.register = async (req, res) => {
       message: 'User registered successfully',
       token,
       user: {
-        user_id: userId,
+        user_id,
         username,
         email,
         role
@@ -101,9 +101,9 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Generate JWT
+    // Generate JWT with user_id
     const token = jwt.sign(
-      { userId: user.user_id, email: user.email, role: user.role },
+      { user_id: user.user_id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
@@ -127,5 +127,3 @@ exports.login = async (req, res) => {
     });
   }
 };
-
-

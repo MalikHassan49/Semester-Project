@@ -5,7 +5,7 @@ const db = require('../config/db');
 exports.submitReview = async (req, res) => {
   try {
     const { paperId, comments } = req.body;
-    const reviewerId = req.user.userId;
+    const reviewerId = req.user.user_id;
 
     if (!paperId || !comments) {
       return res.status(400).json({

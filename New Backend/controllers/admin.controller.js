@@ -22,17 +22,17 @@ exports.getAllUsers = async (req, res) => {
 // Delete User
 exports.deleteUser = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const { user_id } = req.params;
 
     // Prevent deleting yourself
-    if (parseInt(userId) === req.user.userId) {
+    if (parseInt(user_id) === req.user.user_id) {
       return res.status(400).json({
         success: false,
         message: 'You cannot delete your own account'
       });
     }
 
-    const [result] = await db2.query('CALL sp_delete_user(?)', [userId]);
+    const [result] = await db2.query('CALL sp_delete_user(?)', [user_id]);
 
     if (result[0][0].deleted_count === 0) {
       return res.status(404).json({
