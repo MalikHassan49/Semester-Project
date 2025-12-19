@@ -130,6 +130,9 @@ const cloudinary = require('../config/cloudinary');
 // Submit Paper
 exports.submitPaper = async (req, res) => {
   let connection;
+
+   console.log('Token:', req.headers.authorization);
+    console.log('Decoded user:', req.user);
   
   try {
     const { title, abstract } = req.body;
