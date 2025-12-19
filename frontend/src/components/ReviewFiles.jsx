@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ReviewFiles.css';
 const API_BASE_URL = import.meta.env.VITE_API_URL;
+console.log('API_BASE_URL:', API_BASE_URL);
 
 const ReviewFiles = () => {
   const [papers, setPapers] = useState([]);
