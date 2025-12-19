@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ReviewFiles.css';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const ReviewFiles = () => {
   const [papers, setPapers] = useState([]);
@@ -20,7 +21,7 @@ const ReviewFiles = () => {
   const fetchPapers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/papers/all', {
+      const response = await fetch(`{API_BASE_URL}/api/papers/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -51,7 +52,7 @@ const ReviewFiles = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/reviews/submit', {
+      const response = await fetch(`${API_BASE_URL}/api/reviews/submit`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -75,7 +76,7 @@ const ReviewFiles = () => {
         setError(data.message);
       }
     } catch (err) {
-      setError('Failed to submit review');
+      setError('Failed to submit review',err);
     } finally {
       setSubmitting(false);
     }

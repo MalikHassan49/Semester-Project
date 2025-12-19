@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DisplayPapers.css';
-const API_URL = import.meta.env.VITE_API_URL;
-
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const DisplayPapers = () => {
   const [papers, setPapers] = useState([]);
@@ -14,57 +13,30 @@ const DisplayPapers = () => {
     fetchPapers();
   }, []);
 
-  // const fetchPapers = async () => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const response = await fetch('http://localhost:5000/api/papers/my-papers', {
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (response.ok) {
-  //       setPapers(data.papers);
-  //     } else {
-  //       setError(data.message || 'Failed to fetch papers');
-  //     }
-  //   } catch (err) {
-  //     setError('Server error. Please try again later.');
-  //     console.error('Error:', err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-
   const fetchPapers = async () => {
-  try {
-    const token = localStorage.getItem('token');
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/api/papers/my-papers`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
-    const response = await fetch(`${API_URL}/api/papers/my-papers`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+      const data = await response.json();
+
+      if (response.ok) {
+        setPapers(data.papers);
+      } else {
+        setError(data.message || 'Failed to fetch papers');
       }
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to fetch papers');
+    } catch (err) {
+      setError('Server error. Please try again later.');
+      console.error('Error:', err);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    setPapers(data.papers);
-  } catch (err) {
-    console.error(err);
-    setError(err.message);
-  } finally {
-    setLoading(false);
-  }
-};
 
 
   const handleBack = () => {

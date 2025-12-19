@@ -27,6 +27,9 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -67,8 +70,17 @@ app.use((req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`📊 Environment: ${process.env.NODE_ENV}`);
-  console.log(`🔗 CORS enabled for: ${process.env.CORS_ORIGIN}`);
+  const environment = process.env.NODE_ENV || 'development';
+  const corsOrigin = process.env.CORS_ORIGIN || 'Not set';
+
+  const serverMessage = environment === 'production' 
+    ? 'Server is running in production mode' 
+    : `Server is running on http://localhost:${PORT}`;
+
+  console.log(serverMessage);
+  console.log(`Environment: ${environment}`);
+  console.log(`CORS enabled for: ${corsOrigin}`);
 });
+

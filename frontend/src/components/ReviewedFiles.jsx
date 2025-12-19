@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ReviewedFiles.css';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const ReviewedFiles = () => {
   const [papers, setPapers] = useState([]);
@@ -17,7 +18,7 @@ const ReviewedFiles = () => {
   const fetchReviewedPapers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/reviews/reviewed-papers', {
+      const response = await fetch(`${API_BASE_URL}/api/reviews/reviewed-papers`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -32,7 +33,7 @@ const ReviewedFiles = () => {
   const fetchReviews = async (paperId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/reviews/paper/${paperId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/reviews/paper/${paperId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
