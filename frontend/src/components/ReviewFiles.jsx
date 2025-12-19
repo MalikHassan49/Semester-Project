@@ -22,7 +22,7 @@ const ReviewFiles = () => {
   const fetchPapers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`{API_BASE_URL}/api/papers/all`, {
+      const response = await fetch(`${API_BASE_URL}/api/papers/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
