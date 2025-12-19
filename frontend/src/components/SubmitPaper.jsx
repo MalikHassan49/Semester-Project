@@ -65,6 +65,7 @@ const SubmitPaper = () => {
 
     try {
       const token = localStorage.getItem('token');
+      console.log('Token:', token);
       const formDataToSend = new FormData();
       formDataToSend.append('title', formData.title);
       formDataToSend.append('abstract', formData.abstract);
