@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SubmitPaper.css';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const SubmitPaper = () => {
   const [formData, setFormData] = useState({
@@ -69,7 +70,7 @@ const SubmitPaper = () => {
       formDataToSend.append('abstract', formData.abstract);
       formDataToSend.append('file', file);
 
-      const response = await fetch('http://localhost:5000/api/papers/submit', {
+      const response = await fetch(`${API_BASE_URL}/api/papers/submit`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
