@@ -134,6 +134,7 @@ exports.submitPaper = async (req, res) => {
   try {
     const { title, abstract } = req.body;
     const authorId = req.user.user_id;
+    console.log('Author ID:', authorId);
 
     if (!title || !abstract) {
       return res.status(400).json({
